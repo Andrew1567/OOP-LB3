@@ -1,7 +1,9 @@
+Скопіюйте та заповніть:
 
 | # | Категорія | Де (файл/рядок) | Проблема | Чому це погано | Як виправити |
-|---|----------|------------------|---------|----------------|--------------|
-| 1 | Security | `UserService.java:...` | Логується пароль | Витік секретів у логи | Прибрати пароль з логів |
-| 2 | Correctness | `UserService.java:...` | Off-by-one в циклі | Потенційний crash | `i < rows.size()` |
-| 3 | Maintainability | `App.java:...` | Глобальний mutable state | Складність дебагу | Інкапсулювати стан |
-| … | … | … | … | … | … | … |
+| 1 | Security | BadStoreApp.java:33 | Логується пароль у консоль | Витік секретних даних у логи | Прибрати пароль із println |
+| 2 | Security | BadStoreApp.java:59 | SQL Injection через конкатенацію | Зловмисник може викрасти всю БД | Використовувати PreparedStatement |
+| 3 | Correctness | BadStoreApp.java:35 | Порівняння String через == | Умова для адміна може не спрацювати | Використовувати .equals() |
+| 4 | Correctness | BadStoreApp.java:121 | Off-by-one (i <= lines.size()) | "Програма ""впаде"" з помилкою (crash)" | Змінити на i < lines.size() |
+| 5 | Maintainability | BadStoreApp.java:11 | Глобальний mutable state (static Map) | Плутанина з даними різних користувачів | Інкапсулювати стан у об'єкт сесії |
+| 6 | Architecture | BadStoreApp.java:137 | Hardcoded credentials | "Пароль до БД ""зашитий"" прямо в коді" | Винести паролі в змінні оточення | 
